@@ -1,1 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Security Training for Afghan Universities</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1D1D1B;
+            background-color: #F1F5F8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #017CA5 0%, #1F3F56 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: #5DBEDB;
+            color: #1F3F56;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Logo Section */
+        .logos {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(1, 124, 165, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 80px;
+            object-fit: contain;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(20%);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        /* Main Content */
+        main {
+            padding: 4rem 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .content-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(1, 124, 165, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(1, 124, 165, 0.15);
+        }
+
+        .section-title {
+            color: #017CA5;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #017CA5, #5DBEDB);
+            border-radius: 2px;
+        }
+
+        .overview-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #017CA5, #5DBEDB);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: transform 0.6s ease;
+        }
+
+        .stat-card:hover {
+            transform: perspective(1000px) rotateY(10deg) scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Activities */
+        .activities {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(1, 124, 165, 0.1);
+        }
+
+        .activity-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-item {
+            padding: 1.5rem;
+            border-left: 4px solid #5DBEDB;
+            background: #F1F5F8;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            border-left-color: #017CA5;
+            background: white;
+            box-shadow: 0 5px 15px rgba(1, 124, 165, 0.1);
+        }
+
+        .activity-title {
+            color: #017CA5;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Outcomes */
+        .outcomes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .outcome-card {
+            background: linear-gradient(135deg, #1F3F56, #017CA5);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(93, 190, 219, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: transform 0.6s ease;
+        }
+
+        .outcome-card:hover::before {
+            transform: rotate(45deg) translate(100%, 100%);
+        }
+
+        .outcome-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .outcome-text {
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+
+        /* SDGs */
+        .sdgs {
+            background: linear-gradient(135deg, #5DBEDB, #017CA5);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .sdg-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .sdg-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .sdg-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #1F3F56;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .logo-container {
+                gap: 2rem;
+            }
+            
+            .logo {
+                height: 60px;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Network Security Training</h1>
+                <p class="subtitle">Strengthening Cybersecurity Capacity in Afghan Universities</p>
+                <span class="category-tag">WP3 - Human Capacity Building</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="logos">
+        <div class="container">
+            <div class="logo-container">
+                <img src="images/logos/eu-logo.png" alt="European Union" class="logo">
+                <img src="images/logos/tein-logo.png" alt="TEIN*CC Cooperation Center" class="logo">
+                <img src="images/logos/asia-connect-logo.png" alt="Asia Connect" class="logo">
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-card">
+                    <h2 class="section-title">Project Overview</h2>
+                    <p class="overview-text">
+                        This comprehensive training initiative successfully built foundational and advanced network security capabilities among IT technicians across Afghanistan's public university system. Through intensive hands-on workshops and theoretical instruction, the project addressed critical cybersecurity skill gaps while promoting the adoption of open-source security tools and standardized policies.
+                    </p>
+                    <p class="overview-text">
+                        Conducted in two phases during December 2019 and February 2020, the training reached 49 IT professionals from 25 universities, demonstrating significant improvements in security awareness and technical competency through pre- and post-assessment evaluations.
+                    </p>
+                </div>
+
+                <div class="content-card">
+                    <h2 class="section-title">Partners</h2>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 1rem; padding: 0.5rem; background: #F1F5F8; border-radius: 8px;">
+                            <strong>Ministry of Higher Education (MoHE)</strong><br>
+                            <small>Afghanistan - Lead Partner</small>
+                        </li>
+                        <li style="margin-bottom: 1rem; padding: 0.5rem; background: #F1F5F8; border-radius: 8px;">
+                            <strong>Shaheed Rabbani Education University</strong><br>
+                            <small>Training Coordination</small>
+                        </li>
+                        <li style="margin-bottom: 1rem; padding: 0.5rem; background: #F1F5F8; border-radius: 8px;">
+                            <strong>AfgREN</strong><br>
+                            <small>Afghanistan Research and Education Network</small>
+                        </li>
+                        <li style="padding: 0.5rem; background: #F1F5F8; border-radius: 8px;">
+                            <strong>Kabul Polytechnic University</strong><br>
+                            <small>Technical Support</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">49</span>
+                    <span class="stat-label">IT Technicians Trained</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">Universities Reached</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Days of Training</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Satisfaction Rate</span>
+                </div>
+            </div>
+
+            <div class="activities">
+                <h2 class="section-title">Key Activities</h2>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <h3 class="activity-title">Pre-Workshop Assessment</h3>
+                        <p>Comprehensive needs analysis across 21 IT technicians from 7 universities to identify critical skill gaps and training requirements.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3 class="activity-title">Intensive Training Workshops</h3>
+                        <p>Two 5-day intensive sessions covering network security fundamentals, threat analysis, and hands-on tool deployment.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3 class="activity-title">Hands-on Laboratory Sessions</h3>
+                        <p>Practical training with Wireshark, Snort, firewall configuration, VLANs, DNSSEC, VPNs, and Security Onion platforms.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3 class="activity-title">Knowledge Validation</h3>
+                        <p>Pre- and post-training assessments demonstrating significant improvements in security awareness and technical competency.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3 class="activity-title">Community Building</h3>
+                        <p>Establishment of ongoing support networks through dedicated Facebook groups for continued learning and collaboration.</p>
+                    </div>
+                    <div class="activity-item">
+                        <h3 class="activity-title">Documentation & Reporting</h3>
+                        <p>Comprehensive project documentation including participant feedback, attendance records, and future implementation recommendations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Key Outcomes & Impact</h2>
+            <div class="outcomes">
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Enhanced Security Awareness</h3>
+                    <p class="outcome-text">Significant improvement in understanding of VPNs, IDPS, and modern security protocols as validated through post-training assessments.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Open-Source Tool Adoption</h3>
+                    <p class="outcome-text">Successful training in Security Onion, PFSense, and Kali Linux, reducing dependency on unauthorized software solutions.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Bandwidth Optimization</h3>
+                    <p class="outcome-text">Implementation of effective campus bandwidth management strategies including content filtering and caching mechanisms.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Policy Development Initiative</h3>
+                    <p class="outcome-text">Ministry commitment to developing standardized network security policies for implementation across all public universities.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Capacity Building Success</h3>
+                    <p class="outcome-text">100% participant satisfaction with strong demand for advanced follow-up training and extended program duration.</p>
+                </div>
+                <div class="outcome-card">
+                    <h3 class="outcome-title">Inter-University Collaboration</h3>
+                    <p class="outcome-text">Strengthened networks between institutions promoting knowledge sharing and collaborative security initiatives.</p>
+                </div>
+            </div>
+
+            <div class="sdgs">
+                <h2 style="margin-bottom: 1rem;">Supporting UN Sustainable Development Goals</h2>
+                <p>This project directly contributes to multiple SDGs through capacity building, infrastructure development, and institutional strengthening.</p>
+                <div class="sdg-list">
+                    <div class="sdg-item">SDG 4 - Quality Education</div>
+                    <div class="sdg-item">SDG 9 - Innovation & Infrastructure</div>
+                    <div class="sdg-item">SDG 16 - Strong Institutions</div>
+                    <div class="sdg-item">SDG 17 - Global Partnerships</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Network Security Training Project | Supported by TEIN*CC and International Partners</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
